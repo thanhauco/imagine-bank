@@ -1,0 +1,13 @@
+package com.imagine.bank.domain;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import lombok.Data;
+@Entity @Data
+public class Transaction extends BaseEntity {
+    private String reference;
+    private BigDecimal amount;
+    @ManyToOne
+    private Account sourceAccount;
+    @ManyToOne 
+    private Account targetAccount;
+}
