@@ -1,11 +1,1 @@
-package com.imagine.bank.domain;
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
-@MappedSuperclass
-public class BaseEntity implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Date createdDate;
-    @PrePersist void onCreate() { createdDate = new Date(); }
-}
+package com.imagine.bank.domain; import java.io.Serializable; import java.util.Date; public class BaseEntity implements Serializable { private Long id; private Date createdDate; }
