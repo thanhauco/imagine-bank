@@ -1,1 +1,1 @@
-package com.imagine.bank.domain; import java.math.BigDecimal; public class Account extends BaseEntity { private String accountNumber; private BigDecimal balance; private Customer owner; }
+package com.imagine.bank.domain; import javax.persistence.*; import java.math.BigDecimal; @Entity public class Account extends BaseEntity { private String accountNumber; private BigDecimal balance; @ManyToOne private Customer owner; }
