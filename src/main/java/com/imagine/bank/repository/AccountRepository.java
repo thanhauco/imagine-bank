@@ -1,4 +1,1 @@
-package com.imagine.bank.repository;
-import com.imagine.bank.domain.Account;
-import org.springframework.data.jpa.repository.JpaRepository;
-public interface AccountRepository extends JpaRepository<Account, Long> {}
+package com.imagine.bank.repository; import com.imagine.bank.domain.Account; import org.springframework.data.jpa.repository.JpaRepository; public interface AccountRepository extends JpaRepository<Account, Long> {}
