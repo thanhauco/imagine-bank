@@ -1,7 +1,1 @@
-package com.imagine.bank.service;
-import com.imagine.bank.domain.Account;
-import java.math.BigDecimal;
-public interface AccountService {
-    Account createAccount(Long customerId, BigDecimal initialDeposit);
-    BigDecimal getBalance(String accountNumber);
-}
+package com.imagine.bank.service; import com.imagine.bank.domain.Account; import java.math.BigDecimal; public interface AccountService { Account createAccount(Long customerId, BigDecimal initialDeposit); BigDecimal getBalance(String accountNumber); }
