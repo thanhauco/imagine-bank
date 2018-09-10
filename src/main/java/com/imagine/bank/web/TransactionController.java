@@ -1,8 +1,1 @@
-package com.imagine.bank.web;
-import org.springframework.web.bind.annotation.*;
-@RestController
-@RequestMapping(""/api/transactions"")
-public class TransactionController {
-    @PostMapping(""/transfer"")
-    public void transfer() { }
-}
+package com.imagine.bank.web; import org.springframework.web.bind.annotation.*; @RestController @RequestMapping("/api/transactions") public class TransactionController { @PostMapping("/transfer") public void transfer() {} }
