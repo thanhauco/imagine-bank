@@ -1,1 +1,1 @@
-# Imagine Bank\n\nCore banking system.
+# Imagine Bank\n\nMicroservices-ready Core Banking.\n\nNow preparing for cloud migration.
