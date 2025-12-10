@@ -20,13 +20,16 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
     private final TransactionRepository transactionRepository;
+    private final com.imagine.bank.service.FraudCheckService fraudCheckService;
 
     public AccountServiceImpl(AccountRepository accountRepository, 
                             CustomerRepository customerRepository,
-                            TransactionRepository transactionRepository) {
+                            TransactionRepository transactionRepository,
+                            com.imagine.bank.service.FraudCheckService fraudCheckService) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
         this.transactionRepository = transactionRepository;
+        this.fraudCheckService = fraudCheckService;
     }
     
     @Override
@@ -57,6 +60,24 @@ public class AccountServiceImpl implements AccountService {
     public void transfer(Long fromAccountId, Long toAccountId, BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Transfer amount must be positive");
+        }
+        
+        // Anti-Fraud Check
+        Transaction checkTx = new Transaction();
+        checkTx.setAmount(amount);
+        checkTx.setDescription("Transfer from " + fromAccountId + " to " + toAccountId);
+        
+        if (fraudCheckService.isSuspicious(checkTx)) {
+            throw new SecurityException("Transaction Blocked: " + fraudCheckService.getFraudReason(checkTx));
+        }
+        
+        // Anti-Fraud Check
+        Transaction checkTx = new Transaction();
+        checkTx.setAmount(amount);
+        checkTx.setDescription("Transfer from " + fromAccountId + " to " + toAccountId);
+        
+        if (fraudCheckService.isSuspicious(checkTx)) {
+            throw new SecurityException("Transaction Blocked: " + fraudCheckService.getFraudReason(checkTx));
         }
         
         Account source = accountRepository.findById(fromAccountId)
