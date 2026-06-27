@@ -71,14 +71,7 @@ public class AccountServiceImpl implements AccountService {
             throw new SecurityException("Transaction Blocked: " + fraudCheckService.getFraudReason(checkTx));
         }
         
-        // Anti-Fraud Check
-        Transaction checkTx = new Transaction();
-        checkTx.setAmount(amount);
-        checkTx.setDescription("Transfer from " + fromAccountId + " to " + toAccountId);
-        
-        if (fraudCheckService.isSuspicious(checkTx)) {
-            throw new SecurityException("Transaction Blocked: " + fraudCheckService.getFraudReason(checkTx));
-        }
+
         
         Account source = accountRepository.findById(fromAccountId)
                 .orElseThrow(() -> new RuntimeException("Source account not found"));
